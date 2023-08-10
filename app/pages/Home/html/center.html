@@ -1,0 +1,151 @@
+<div class="ui segment basic slim">
+  <div class="ui header blue">
+    Spotify API and Web Player
+  </div>
+
+  <div appuse="cards" group="statustabs" item="new" class="pad0 hidden">
+    <div class="ui header blue medium">
+      Spotify Developer Playground
+    </div>
+    <div class="ui segment blue">
+      To get started, create a new spotify application in the developers console and enter the client id (no need to provide your secret key).
+      <div class="pad2"></div>
+      <div class="ui message orange">
+        This is a <b>developer playground</b> to work with the API and to provide a complete example of using the Spotify API with a serverless hosted website.  This site is hosted on GitHub and is 100% client side.
+      </div>
+      <div class="ui message blue">
+        <b>How it works:</b> This uses the clientid only, no secret key is needed for this implementation.
+        <div class="pad2"></div>
+        There is no server and no way for a person to get the clientId outside of your own computer.  The clientId can be removed anytime, this is providing an application access to your account in a way that only you - on this browser can control.
+        <div class="pad2"></div>
+        <a target="_blank" href="https://engineering.atspotify.com/2022/04/spotifys-player-api/">This article explains it all and has links to everything implemented here. </a>
+        <div class="pad2"></div>
+        Once you have a client id, use the button below.  That saves it to localStorage so when you come back, it remembers you.  You can clear storage or set them to blank if you like, but this should only be used on your own private computer.
+      </div>
+
+      <div class="ui button blue" pageaction="setClientID">
+        Set Client ID
+      </div>
+    </div>
+  </div>
+  <div appuse="cards" group="statustabs" item="setup" class="pad0  hidden ">
+    <div class="ui header blue medium">
+      Almost there.  You just need to requst a token .. do that now below.
+    </div>
+
+
+    <div class="ui button blue" pageaction="login">
+      Get Access Token
+    </div>
+    <div class="pad5"></div>
+    <div class="ui button basic" pageaction="changeClientID">
+      Change Client ID
+    </div>
+
+
+  </div>
+
+  <div appuse="cards" group="statustabs" item="ready" class="pad0   ">
+
+    <div class="ui blue message large">
+      <div class="ui header medium blue">
+        Full API Control and Web Player
+      </div>
+      <div class="pad2"></div>
+      <div class="ui message white">
+        <div class="ui header small">
+          About API Control
+        </div>
+        <a target="_blank" href="https://developer.spotify.com/documentation/web-api">Official Spotify API documentation</a>
+        <div class="pad5"></div>
+
+        <div class="ui label green basic">
+          In the console, you now have full access to all of the Spotify APIs.
+        </div>
+        <div class="pad5"></div>
+
+        <b>Things you can do ....</b>
+        <div class="ui middle aligned divided list mar4">
+          <div class="item">
+            <b>Play and Pause</b> whatever is playing, anywhere on any device.
+          </div>
+          <div class="item">
+            <b>Prev and Next Track</b> for whatever is playing .. wherever.
+          </div>
+          <div class="item">
+            <b>Get current song </b> and a whole lot more
+          </div>
+
+          <div class="item">
+            <b>Queue mangagement</b> can be direct directly from the API (right in the console) - go nuts!
+          </div>
+        </div>
+
+        <div class="pad5"></div>
+        <b>Some sample buttons that run the API ....</b>
+        <div class="pad2"></div>
+        <div class="ui button blue" pageaction="hitPlay">
+          Play
+        </div>
+        <div class="ui button blue" pageaction="hitPause">
+          Pause
+        </div>
+        <div class="ui button blue" pageaction="nextTrack">
+          Next Track
+        </div>
+        <div class="ui button blue" pageaction="prevTrack">
+          Prev
+        </div>
+
+        <div class="pad2"></div>
+        <b>Check out the docs and use the console to explore all the possibilities</b>
+
+      </div>
+
+      <div class="ui message white">
+        <div class="ui header small">
+          About The Web Player
+        </div>
+
+        <a target="_blank" href="https://developer.spotify.com/documentation/web-playback-sdk/tutorials/getting-started">Official documentation on the player</a>
+        <div class="pad5"></div>
+        <b>The Web Player allows you to play Spotify directly on this site. Just like any device, it can be controlled by any Spotify client while connected.  Pretty cool!</b>
+        <div class="pad5"></div>
+        How to use it here ...
+        <div class="ui middle aligned divided list">
+          <div class="item">
+            <b>Connect the player </b> by clicking <b>Connect Player</b> button.
+          </div>
+          <div class="item">
+            <b>Once connected, turn on the player </b> by clicking the newly available <b>Toggle Player</b> button.
+          </div>
+          <div class="item">
+            <b>Select this web player </b> in Spotify on any device.
+          </div>
+          <div class="item">
+            <b>Select some music </b> such as a playlist.
+          </div>
+          <div class="item">
+            <b>Hit play on the remote player</b>, you can then control the player using the buttons below.
+          </div>
+        </div>
+
+        <div class="pad3">
+          <div class="pad3">
+            Load up a playlist and hit play.
+          </div>
+
+          <!--<span class="ui black label right pointing">Now Playing: </span>-->
+          <!--<span class="pad5 ui larger" pagespot="Now Playing">-->
+
+          <!--</span>-->
+        </div>
+
+      </div>
+
+
+
+
+    </div>
+  </div>
+</div>
