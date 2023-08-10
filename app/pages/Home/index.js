@@ -149,42 +149,14 @@ window.ThisPageNow = ThisPage;
     //------- --------  --------  --------  --------  --------  --------  -------- 
     //~YourPageCode//~
 //--- Get Client ID via prompt    
-var clientId = localStorage.getItem('_spotify_client_id_DigitalPuppet') || '';
+ActionAppCore.spotifyLocalStoreName = '_spotify_client_id_SpotifyPlayground';
+var clientId = localStorage.getItem(ActionAppCore.spotifyLocalStoreName) || '';
 
 ActionAppCore.spotifyDeviceName = 'Spotify API Playground'
 ActionAppCore.spotifyPlayerConnected = false
 
-//--- Going to tell the login process to return to this page with the code
-//      we will use that code directly to authenticate and get token 
 var callbackURL = window.location.origin + window.location.pathname;
-    //var params = new URLSearchParams(window.location.search);
-    // async function getAccessToken(theClientId, theCode) {
-    //     const verifier = localStorage.getItem("verifier");
-
-    //     if (!theCode && verifier) {
-    //         return ThisApp.util.rejectedPromise('must have code and verifier set')
-    //     }
-    //     var dfd = jQuery.Deferred();
-
-    //     const params = new URLSearchParams();
-    //     params.append("client_id", theClientId);
-    //     params.append("grant_type", "authorization_code");
-    //     params.append("code", theCode);
-    //     params.append("redirect_uri", "http://localhost:33480/codeback");
-    //     params.append("code_verifier", verifier);
-
-
-    //     const result = await fetch("https://accounts.spotify.com/api/token", {
-    //         method: "POST",
-    //         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    //         body: params
-    //     });
-
-    //     const { access_token } = await result.json();
-    //     dfd.resolve(access_token);
-    //     return dfd.promise();
-    // }
-
+   
     async function getAccessInfo(theClientId, theCode) {
         const verifier = localStorage.getItem("verifier");
 
@@ -271,7 +243,7 @@ var callbackURL = window.location.origin + window.location.pathname;
     actions.setClientID = function () {
         ThisApp.input('Enter the Client ID', 'Spotify App Client ID', 'Save Client ID', '').then(function (theTextValue) {
             if (theTextValue) {
-                localStorage.setItem('_spotify_client_id_DigitalPuppet', theTextValue);
+                localStorage.setItem(ActionAppCore.spotifyLocalStoreName, theTextValue);
                 window.location = window.location;
             }
         });
