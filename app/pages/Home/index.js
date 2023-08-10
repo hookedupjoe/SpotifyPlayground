@@ -251,10 +251,14 @@ var callbackURL = window.location.origin + window.location.pathname;
     
     actions.connectPlayer = connectPlayer;
     function connectPlayer(){
+        var tmpIsNot = ThisPage.getByAttr$({pageuse:"PlayerNotConnected"});
+        ThisApp.util.addTempLoader(tmpIsNot);
         ActionAppCore.spotifyPlayer.connect();
         //-- ToDo: Get connected message and use that
-        ThisApp.delay(3000).then(() => {refreshDeviceList()})
+        ThisApp.delay(3000).then(() => {ThisApp.util.removeTempLoader(tmpIsNot);refreshDeviceList()})
     }
+
+    
 
     actions.togglePlayer = togglePlayer;
     function togglePlayer(){
@@ -430,6 +434,23 @@ var callbackURL = window.location.origin + window.location.pathname;
         }
     }
 
+    // function getEl$(theEl){
+    //     var tmpEl = theEl;
+    //     if (!ThisApp.util.isjQuery(tmpEl)){
+    //         tmpEl = $(tmpEl);            
+    //     }
+    //     return tmpEl;
+    // }
+
+    // function addTempLoader(theEl){
+    //     var tmpEl = getEl$(theEl);
+    //     tmpEl.append('<div appuse="actAppTempLoader" class="ui active dimmer"><div class="ui loader"></div></div>');
+    // }
+    // function removeTempLoader(theEl){
+    //     var tmpEl = getEl$(theEl);
+    //     ThisApp.getByAttr$({appuse:"actAppTempLoader"},tmpEl).remove();
+    // }
+
     ThisPage.getDevices = getDevices;
     function getDevices() {
         return ThisPage.spotifyGet('/player/devices', '');
@@ -439,9 +460,6 @@ var callbackURL = window.location.origin + window.location.pathname;
     function refreshDeviceList() {
         var dfd = jQuery.Deferred();
         var tmpHTML = [];
-        //console.log('refreshDeviceList')
-        
-
         
         getDevices().then(function (theReply) {
             var tmpIsConnected = false;
@@ -457,12 +475,10 @@ var callbackURL = window.location.origin + window.location.pathname;
                         var tmpIsMe = tmpDevice.name == ActionAppCore.spotifyDeviceName;
                         tmpHTML.push('<a did="' + tmpDevice.id + '" pageaction="setDefaultDevice" class="active blue item">');
                         tmpHTML.push(tmpDevice.name);
-                        console.log( 'tmpDevice.name', tmpDevice.name);
                         if( tmpDevice.name == ActionAppCore.spotifyDeviceName){
                             tmpIsConnected = true;
                         }
 
-                        console.log( 'tmpIsConnected', tmpIsConnected);
                         var tmpMiddle = '&nbsp;&nbsp;&nbsp;';
                         if( tmpIsMe ){
                             tmpThisIsActive = true;
@@ -519,7 +535,6 @@ var callbackURL = window.location.origin + window.location.pathname;
         var tmpParams = ThisApp.getActionParams(theParams, theTarget, ['did'])
         var tmpDeviceId = tmpParams.did || '';
         ThisPage.common.activeDeviceId = tmpDeviceId;
-        console.log('tmpDeviceId', tmpDeviceId);
     }
     actions.login = login;
     async function login() {
